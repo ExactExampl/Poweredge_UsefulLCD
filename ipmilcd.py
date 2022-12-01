@@ -5,15 +5,15 @@ import psutil, signal
 
 translator = '/usr/sbin/ipmilcd/lcd.pl'
 stopped = False
-servname = 'call me whatever' # Server name
+servname = 'change me' # Server name (must be 14 characters long)
 
 def handle_stop(sig, frame):
     global stopped
     stopped = True
-    #print ('handling interrupt') #debug
     Popen(["perl", translator, 'Nap time !'])
     sleep(1)
     Popen(["perl", translator, servname]) # Print server name
+    sleep(.5)
     exit(0)
 
 signal.signal(signal.SIGTERM, handle_stop)
