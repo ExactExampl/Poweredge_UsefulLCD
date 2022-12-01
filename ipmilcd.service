@@ -2,6 +2,7 @@
 Description=Useful LCD service
 After=multi-user.target
 [Service]
+User=root
 Type=simple
 Restart=always
 ExecStart=/usr/bin/python3 /usr/sbin/ipmilcd/ipmilcd.py

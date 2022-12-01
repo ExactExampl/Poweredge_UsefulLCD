@@ -3,7 +3,7 @@ from subprocess import Popen
 from sys import exit
 import psutil, signal
 
-
+translator = '/usr/sbin/ipmilcd/lcd.pl'
 stopped = False
 servname = 'call me whatever' # Server name
 
@@ -11,9 +11,9 @@ def handle_stop(sig, frame):
     global stopped
     stopped = True
     #print ('handling interrupt') #debug
-    Popen(["perl", "lcd.pl", 'Nap time !'])
+    Popen(["perl", translator, 'Nap time !'])
     sleep(1)
-    Popen(["perl", "lcd.pl", servname]) # Print server name
+    Popen(["perl", translator, servname]) # Print server name
     exit(0)
 
 signal.signal(signal.SIGTERM, handle_stop)
@@ -49,14 +49,14 @@ cptemp1, cptemp2 = cputemp()
     
 while not stopped:
     cputil = str(psutil.cpu_percent(0))
-    Popen(["perl", "lcd.pl", 'CPU:', cputil, '%'])
+    Popen(["perl", translator, 'CPU:', cputil, '%'])
     sleep(3)
     ramutil = str(psutil.virtual_memory()[2])
-    Popen(["perl", "lcd.pl", 'RAM:', ramutil, '%'])
+    Popen(["perl", translator, 'RAM:', ramutil, '%'])
     sleep(3)
-    Popen(["perl", "lcd.pl", 'CPU1 t:', str(cptemp1),'`C'])
+    Popen(["perl", translator, 'CPU1 t:', str(cptemp1),'`C'])
     sleep(3)
-    Popen(["perl", "lcd.pl", 'CPU2 t:', str(cptemp2),'`C'])
+    Popen(["perl", translator, 'CPU2 t:', str(cptemp2),'`C'])
     sleep(3)
-    Popen(["perl", "lcd.pl", servname]) # Print server name
+    Popen(["perl", translator, servname]) # Print server name
     sleep(3)
