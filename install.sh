@@ -9,4 +9,4 @@ mkdir /usr/sbin/ipmilcd
 cp ipmilcd.py lcd.pl /usr/sbin/ipmilcd
 cp ipmilcd.service /etc/systemd/system
 systemctl daemon-reload
-systemctl enable ipmilcd.service
+systemctl enable ipmilcd.service --now
