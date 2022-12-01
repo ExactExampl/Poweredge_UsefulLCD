@@ -1,0 +1,9 @@
+[Unit]
+Description=Useful LCD service
+After=multi-user.target
+[Service]
+Type=simple
+Restart=always
+ExecStart=/usr/bin/python3 /usr/sbin/ipmilcd/ipmilcd.py
+[Install]
+WantedBy=multi-user.target
