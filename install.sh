@@ -6,7 +6,8 @@ if [ "$EUID" -ne 0 ]
 fi
 
 mkdir /usr/sbin/ipmilcd
-cp ipmilcd.py lcd.pl /usr/sbin/ipmilcd
+g++ lcd.cpp -o /usr/sbin/ipmilcd/lcd
+cp ipmilcd.py /usr/sbin/ipmilcd
 cp ipmilcd.service /etc/systemd/system
 systemctl daemon-reload
 systemctl enable ipmilcd.service --now

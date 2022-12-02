@@ -4,7 +4,7 @@ from sys import exit
 from multiprocessing import cpu_count
 import psutil, signal
 
-translator = '/usr/sbin/ipmilcd/lcd.pl'
+translator = '/usr/sbin/ipmilcd/lcd'
 threads_num = cpu_count()
 stopped = False
 servname = 'change me' # Server name (must be 14 characters long)
@@ -12,9 +12,9 @@ servname = 'change me' # Server name (must be 14 characters long)
 def handle_stop(sig, frame):
     global stopped
     stopped = True
-    Popen(["perl", translator, 'Nap time !'])
+    Popen([translator, 'Nap time !'])
     sleep(1)
-    Popen(["perl", translator, servname]) # Print server name
+    Popen([translator, servname]) # Print server name
     sleep(.5)
     exit(0)
 
@@ -81,14 +81,14 @@ cptemp1, cptemp2 = cputemp()
     
 while not stopped:
     cputil = str(psutil.cpu_percent(0))
-    Popen(["perl", translator, 'CPU:', cputil, '%'])
+    Popen([translator, 'CPU:', cputil, '%'])
     sleep(3)
     ramutil = str(psutil.virtual_memory()[2])
-    Popen(["perl", translator, 'RAM:', ramutil, '%'])
+    Popen([translator, 'RAM:', ramutil, '%'])
     sleep(3)
-    Popen(["perl", translator, 'CPU1 t:', str(cptemp1),'`C'])
+    Popen([translator, 'CPU1 t:', str(cptemp1),'`C'])
     sleep(3)
-    Popen(["perl", translator, 'CPU2 t:', str(cptemp2),'`C'])
+    Popen([translator, 'CPU2 t:', str(cptemp2),'`C'])
     sleep(3)
-    Popen(["perl", translator, servname]) # Print server name
+    Popen([translator, servname]) # Print server name
     sleep(3)
