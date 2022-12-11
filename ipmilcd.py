@@ -77,9 +77,8 @@ def cputemp():
             approxtemp2 = int(sum(tlist2) / len(tlist2))
         return approxtemp1, approxtemp2
     
-cptemp1, cptemp2 = cputemp()
-    
 while not stopped:
+    cptemp1, cptemp2 = cputemp()
     cputil = str(psutil.cpu_percent(0))
     Popen([translator, 'CPU:', cputil, '%'])
     sleep(3)
